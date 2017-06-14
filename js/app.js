@@ -19,21 +19,24 @@ var cargarTareas = function () {
   });
 }
     var crearTarea = function (tarea) {
-      var nombre = tarea.name;
-      var estado = tarea.status[0];
-      // creamos filas
-      var $tr = $("<tr />");
-      //creamos celda del nombre
-      var $nombreTd = $("<td />")
-      $nombreTd.text(nombre);
-      //creamos celda del estado
-      var $estadoTd = $("<td />")
-      $estadoTd.text(estado);
-      $tr.append($nombreTd);
-      $tr.append($estadoTd);
+      var plantillaFinal = "";
+      plantillaFinal += plantilla.replace("__name__" , tarea.name).replace("__status__" , tarea.status[0]);
+      $taskList.html(plantillaFinal);
+      // var nombre = tarea.name;
+      // var estado = tarea.status[0];
+      // // creamos filas
+      // var $tr = $("<tr />");
+      // //creamos celda del nombre
+      // var $nombreTd = $("<td />")
+      // $nombreTd.text(nombre);
+      // //creamos celda del estado
+      // var $estadoTd = $("<td />")
+      // $estadoTd.text(estado);
+      // $tr.append($nombreTd);
+      // $tr.append($estadoTd);
+      //
+      // $taskList.append($tr);
 
-      $taskList.append($tr);
-  
 }
 
 var agregarTarea = function (e) {
@@ -47,4 +50,15 @@ var agregarTarea = function (e) {
 
   });
 };
+
+
+
+var plantilla = '<tr>' + '<td>__name__</td>' + '<td>__status__</td>' + '<td>'+
+  '<a class="glyphicon glyphicon-plus" aria-hidden="true"></a>' +
+  '<a class="glyphicon glyphicon-remove" aria-hidden="true"></a>'+
+  '<a class="glyphicon glyphicon-pencil" aria-hidden="true"></a>' + '</td>' +
+  '</tr>';
+
+
+
 $(document).ready(cargarPagina);
